@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { router, useRouter } from 'expo-router';
 
 export default function SignUpScreen({ navigation }: any) {
   const [email, setEmail] = useState('');
@@ -48,8 +49,8 @@ export default function SignUpScreen({ navigation }: any) {
       </TouchableOpacity>
 
       {/* Navigate to Sign-In Screen */}
-      <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
-        <Text style={styles.link}>Already have an account? Sign In</Text>
+      <TouchableOpacity onPress={() => router.push('/SignInScreen')}>
+      <Text style={styles.link}>Already have an account? Sign In</Text>
       </TouchableOpacity>
     </View>
   );

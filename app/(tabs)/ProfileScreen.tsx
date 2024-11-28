@@ -27,11 +27,11 @@ export default function ProfileScreen() {
       {/* User Info Section */}
       <View style={styles.userInfoSection}>
         <Text style={styles.label}>Name:</Text>
-        <Text style={styles.value}>John Doe</Text>
+        <Text style={styles.value}>Fawaz Nasser</Text>
       </View>
       <View style={styles.userInfoSection}>
         <Text style={styles.label}>Email:</Text>
-        <Text style={styles.value}>johndoe@example.com</Text>
+        <Text style={styles.value}>fawaznasser807@gmail.com</Text>
       </View>
       <View style={styles.userInfoSection}>
         <Text style={styles.label}>Membership:</Text>
