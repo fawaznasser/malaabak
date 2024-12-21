@@ -1,9 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
+
+type Location = {
+  id: string;
+  title: string;
+  description: string;
+  phone: string;
+  latitude: number;
+  longitude: number;
+};
 
 export default function MapWithPhoneNumbers() {
-  const labeledLocations = [
+  const navigation = useNavigation();
+
+  const labeledLocations: Location[] = [
     {
       id: '1',
       title: 'Soccer Field A',
@@ -28,8 +40,21 @@ export default function MapWithPhoneNumbers() {
       latitude: 33.8978,
       longitude: 35.5108,
     },
-
   ];
+
+  const handleMarkerPress = (location: Location) => {
+    type FieldDetailScreenProps = {
+      route: {
+        params: {
+          title: string;
+          description: string;
+          phone: string;
+          latitude: number;
+          longitude: number;
+        };
+      };
+    };    
+  };
 
   return (
     <View style={styles.container}>
@@ -51,11 +76,8 @@ export default function MapWithPhoneNumbers() {
             }}
             title={location.title}
             description={`Phone: ${location.phone}`}
-          >
-            <View style={styles.ballLabel}>
-              <Text style={styles.ballText}>{location.title}</Text>
-            </View>
-          </Marker>
+            onPress={() => handleMarkerPress(location)}
+          />
         ))}
       </MapView>
     </View>
@@ -68,21 +90,5 @@ const styles = StyleSheet.create({
   },
   map: {
     flex: 1,
-  },
-  ballLabel: {
-    backgroundColor: '#4CAF50', // Green ball color
-    width: 25,
-    height:25,
-    borderRadius: 25, // Half of width/height for a perfect circle
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#fff', // Optional border for contrast
-  },
-  ballText: {
-    color: '#4CAF50', // White text
-    fontSize: 10,
-    fontWeight: 'bold',
-    textAlign: 'center',
   },
 });

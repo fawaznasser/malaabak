@@ -66,13 +66,6 @@ export default function EditProfileScreen({ navigation }: any) {
         <Text style={styles.buttonText}>Save Changes</Text>
       </TouchableOpacity>
 
-      {/* Cancel Button */}
-      <TouchableOpacity
-        style={[styles.button, styles.cancelButton]}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={styles.buttonText}>Cancel</Text>
-      </TouchableOpacity>
     </View>
   );
 }
