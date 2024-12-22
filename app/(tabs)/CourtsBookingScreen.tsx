@@ -1,6 +1,4 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from "react";
 import {
   View,
   Text,
@@ -8,37 +6,42 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-} from 'react-native';
+} from "react-native";
+import { useRouter } from "expo-router";
 
 const courts = [
   {
-    id: '1',
-    name: 'Soccer Field A',
+    id: "1",
+    name: "Soccer Field A",
 
-    location: 'Downtown Sports Complex',
-    price: '$50/hour',
-    image: 'https://example.com/soccer-field.jpg',
+    location: "Downtown Sports Complex",
+    price: "$50/hour",
+    image: "https://example.com/soccer-field.jpg",
   },
   {
-    id: '2',
-    name: 'Tennis Court 1',
-    location: 'Green Valley Club',
-    price: '$30/hour',
-    image: 'https://example.com/tennis-court.jpg',
+    id: "2",
+    name: "Tennis Court 1",
+    location: "Green Valley Club",
+    price: "$30/hour",
+    image: "https://example.com/tennis-court.jpg",
   },
   {
-    id: '3',
-    name: 'Basketball Court',
-    location: 'City Sports Arena',
-    price: '$40/hour',
-    image: 'https://example.com/basketball-court.jpg',
+    id: "3",
+    name: "Basketball Court",
+    location: "City Sports Arena",
+    price: "$40/hour",
+    image: "https://example.com/basketball-court.jpg",
   },
 ];
 
-export default function CourtsBookingScreen({ navigation }: any) {
+export default function CourtsBookingScreen({}: any) {
+  const router = useRouter();
   const renderCourt = ({ item }: any) => (
     <TouchableOpacity
-      onPress={() => navigation.navigate('BookingDetails', { court: item })}
+      onPress={() => {
+        router.push({ pathname: "/BookingDetailsScreen", params: item });
+        console.log(item);
+      }}
     >
       <View style={styles.courtCard}>
         <Image source={{ uri: item.image }} style={styles.courtImage} />
@@ -66,39 +69,39 @@ export default function CourtsBookingScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: "#000",
     padding: 20,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#4CAF50',
-    textAlign: 'center',
+    fontWeight: "bold",
+    color: "#4CAF50",
+    textAlign: "center",
     marginBottom: 20,
   },
   courtCard: {
-    backgroundColor: '#222',
+    backgroundColor: "#222",
     borderRadius: 10,
     marginBottom: 15,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   courtImage: {
-    width: '100%',
+    width: "100%",
     height: 150,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
   courtDetailsContainer: {
     padding: 15,
   },
   courtName: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
+    fontWeight: "bold",
+    color: "#fff",
     marginBottom: 10,
   },
   courtDetails: {
     fontSize: 14,
-    color: '#aaa',
+    color: "#aaa",
     marginBottom: 5,
   },
 });
